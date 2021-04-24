@@ -6,6 +6,7 @@ int string_length(char a[]);
 int string_compare(char a[], char b[]);
 char string_copy(char a[], char b[]);
 char string_concatenation(char a[], char b[]);
+char swap_case(char str[]);
 char string_upper(char a[]);
 char string_lower(char a[]);
 
@@ -143,11 +144,37 @@ char string_concatenation(char a[], char b[]){
 
 }
 
+char swap_case(char str[]){
+
+    int i;
+    int len = string_length(str);
+    char temp[len];
+
+    for(i=0; i<len; i++){
+
+        if(str[i] >= 65 && str[i] <= 90){
+            // Capital to small
+            temp[i] = str[i] + 32;
+        }else if(str[i] >= 97 && str[i] <= 122){
+            // Small to capital
+            temp[i] = str[i] - 32;
+        }else{
+            // Other than alphabets
+            temp[i] = str[i];
+        }
+
+    }
+
+    string_copy(str, temp);
+    return *str;
+
+}
+
 char string_upper(char a[]){
 
     int i, j, l;
 
-    l = strlen(a);
+    l = string_length(a);
 
     for(i=0; i<l; i++){
 
@@ -182,5 +209,4 @@ char string_lower(char a[]){
     return *a;
 
 }
-
 
